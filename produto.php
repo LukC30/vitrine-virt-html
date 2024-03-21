@@ -24,7 +24,7 @@
     <!--começo da navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="./index.html"><img src="./images/MT.dd489150c93fe88a14be.png" alt="Logo"></a>
+            <a class="navbar-brand" href="./index.php"><img src="./images/MT.dd489150c93fe88a14be.png" alt="Logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="./Produtos.html">Produto</a>
+                        <a class="nav-link" href="./Produtos.php">Produto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -53,16 +53,21 @@
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                   <a href="carrinho.html"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>         
+                   <a href="carrinho.php"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>         
                 </form>
             </div>
 
         </div>
     </nav>
-
+        <?php
+            $url = $_GET['id'] ?? '';
+            echo "<script>";
+            echo "let url = '$url';";
+            echo "</script>";
+        ?>
     <script>
         let produto = []
-        fetch('http://localhost:80/backend/produtos.php/9/')
+        fetch(`http://localhost:80/backend/produtos.php/${url}/`)
         .then((response)=>{
             return response.json();
         })
