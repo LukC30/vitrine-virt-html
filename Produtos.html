@@ -6,13 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .navbar-brand img {
+            max-width: 100px;
+            /* Ajuste conforme necessário */
+            height: auto;
+        }
+
+        .carousel-item img {
+            width: 50%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Estilos adicionais para tornar o carrossel responsivo */
+        @media (max-width: 768px) {
+            .carousel {
+                width: 100%;
+            }
+        }
+    </style>
+    
 </head>
-<style>
-    .navbar-brand img {
-        width: 100%;
-        max-width: 100px; /* Ajuste conforme necessário */
-    }
-</style>
+
 <body>
     <!--começo da navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,13 +65,56 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
+                   <a href="carrinho.html"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>         
                 </form>
             </div>
+
         </div>
     </nav>
     <!--final da navbar-->
+    <br>
+    <br>
+    <br>
+    <div id="cardContainer" class="cardContainer" style="display: flex; flex-direction: row; flex-wrap: wrap;">
+
+    </div>
+    <script defer>
+        let produtos = [];
+        fetch('http://localhost:80/backend/produtos.php/')
+            .then(response => response.json())
+            .then(data => {
+                produtos = data;
+                console.log(produtos);
+                console.log(data);
+                const cardContainer = document.getElementById('cardContainer');
+                let cardHtml = "";
+                produtos.forEach(produto => {
+                    produto.preco
+                    cardHtml += `
+                        <div class="product-card">
+                            <div class="badge">${produto.nome_grupo}</div>
+                            <div class="product-tumb">
+                                <img src="${produto.caminho}" alt="">
+                            </div>
+                            <div class="product-details">
+                                <span class="product-catagory">${produto.grupo}</span>
+                                <h4><a href="produto${produto.id}.html">${produto.descricao}</a></h4>
+                                <div class="product-bottom-details">
+                                    <div class="product-price"><small></small>R$ ${(produto.preco).toFixed(2)}</div>
+                                    <div class="product-links">
+                                        <a href="produto${produto.id}.html"><i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                cardContainer.innerHTML = cardHtml;
+            })
+            .catch(error => console.log("erro na criacao do card" + error))
+    </script>
 
     <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

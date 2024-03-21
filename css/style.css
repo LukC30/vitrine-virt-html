@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  font-family: "Montserrat", sans-serif
+}
+
+
+.cardContainer {
+  width: 100%;
+  flex-wrap: wrap;
+
+
+}
+
+.navbar-brand img {
+  max-width: 100px;
+  /* Ajuste conforme necessário */
+  height: auto;
+}
+
+.carousel-item img {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Estilos adicionais para tornar o carrossel responsivo */
+@media (max-width: 768px) {
+  .carousel {
+    width: 100%;
+  }
+}
+
+.App {
+  font-family: "Montserrat", Arial, sans-serif;
+  text-align: center;
+  columns: 2;
+  margin-top: 3%;
+  padding-right: 30%;
+  background-color: white;
+  min-height: auto;
+  min-width: auto;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cardImagem {
+  justify-content: left;
+  max-height: 50%;
+  max-width: 65%;
+  display: flex;
+  margin-top: 5%;
+  padding-bottom: 5px;
+  transition: transform .4s;
+  margin-left: 15%;
+}
+
+.cardImagem:hover {
+  transform: scale(1.4);
+
+}
+
+@media only screen and (min-width: 1024px) {
+  .cardImagem {
+
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .cardImagem {
+    transition: none;
+    /* Desativar todas as transições */
+    transform: none !important;
+    /* Garantir que a transformação seja removida */
+    margin-left: 12%;
+  }
+  .divTabelinha{
+    min-width: 100%;
+  }
+}
+
+
+.imagem {
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+}
+
+
+.divTexto {
+  align-items: center;
+  color: black;
+  max-width: 100%;
+  min-height: auto;
+}
+
+.tituloLivro {
+  text-transform: capitalize;
+  text-align: left;
+  font-size: 150%
+}
+
+.autor {
+  text-align: left;
+  text-decoration: solid;
+  color: black;
+}
+
+.descricao {
+  text-align: left;
+  color: #3a8593;
+  font-size: small;
+}
+
+.hr {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+
+a:hover {
+  color: #e64360;
+
+}
+
+.tipoLivro {
+  color: #007185;
+
+}
+
+.divCadastro {
+  margin: 0 auto;
+  background-color: beige;
+  border: #e5d9b3 3px;
+  border-style: solid;
+  border-radius: 1%;
+  align-items: center;
+  width: 60%;
+  height: auto;
+}
+
+.containerxd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.containerr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.divTabelinha {
+  margin: 0 auto;
+  width: 50%;
+  font-size: 12px;
+  display: flexbox;
+
+}
+
