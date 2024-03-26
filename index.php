@@ -114,7 +114,7 @@
     ?>
     <script defer>
         let produtos = [];
-        fetch(`${urlProduto}/backend/produtos.php`)
+        fetch(`${urlProduto}produtos.php`)
             .then(response => response.json())
             .then(data => {
                 produtos = data;

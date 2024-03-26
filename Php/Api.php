@@ -3,39 +3,46 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
+header('Content-Type: application/json');
 
+include 'dbaccess.php'; // Inclua o arquivo que contém sua função de conexão com o banco de dados
 
-include 'dbaccess.php';
+// Função para validar o ID
+function validateID($id) {
+    return is_numeric($id) && intval($id) > 0;
+}
 
 $db = new DbConnect;
 $conn = $db->connect();
 
-$method = $_SERVER['REQUEST_METHOD'];
-switch($method){
-    case "GET":
-        $sql = "SELECT a.codprod AS id, descricao, prvenda AS preco, a.codgru AS grupo, nomegru AS nome_grupo, caminho
+$sql = "SELECT a.codprod AS id, descricao, prvenda AS preco, a.codgru AS grupo, nomegru AS nome_grupo, caminho
         FROM profilia a
         INNER JOIN grupo b ON a.codgru = b.codgru
         INNER JOIN profilia_foto c ON a.codprod = c.codprod
         WHERE a.codprod = c.codprod AND c.id_foto = 1";
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if (validateID($id)) {
+        $sql .= " AND a.codprod = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $users = $stmt ->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($users);
-    break;
-    case "POST":
-        $user = json_decode(file_get_contents('php://input'));
-        $sql = "INSERT INTO teste (nome_prod, descricao) VALUES(:nome_prod, :descricao)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nome_prod', $user->produto);
-        $stmt->bindParam(':descricao', $user->descricao);
-        if($stmt->execute()){
-            $response = ['status' => 1, 'message' => "usuário cadastrado com sucesso."];
+        $stmt->execute([$id]); 
+        $prod = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (empty($prod)) {
+            http_response_code(404); 
+            echo json_encode(array("error" => "Produto não encontrado."));
         } else {
-            $errorInfo = $stmt->errorInfo(); // Captura a informação de erro
-            $response = ['status' => 0, 'message' => "falha na criação de usuário. Erro: " . $errorInfo[2]];
+            echo json_encode($prod);
         }
-        echo json_encode($response);
-        break;
+    } else {
+        http_response_code(400); 
+        echo json_encode(array("error" => "ID inválido."));
+    }
+} else {
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $prod = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($prod);
 }
 ?>

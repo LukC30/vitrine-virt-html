@@ -73,8 +73,8 @@
     ?>
     <script>
         let produto = []
-        console.log(`${urlProduto}backend/produtos.php/${url}`);
-        fetch(`${urlProduto}/backend/produtos.php/${url}`)
+        console.log(`${urlProduto}produtos.php?id=${url}`);
+        fetch(`${urlProduto}produtos.php?id=${url}`)
         .then((response)=>{
             return response.json();
         })
