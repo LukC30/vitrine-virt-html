@@ -1,10 +1,13 @@
 <?php
+include 'env.php';
+
 class DbConnect
 {
-    private $server = 'localhost:3306';
-    private $dbname = 'db_loja';
-    private $user = 'root';
-    private $pass = 'admin';
+
+    private $server = DB_Host;
+    private $dbname = DB_Name;
+    private $user = DB_User;
+    private $pass = DB_Password;
 
     public function connect()
     {

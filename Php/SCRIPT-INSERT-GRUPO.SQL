@@ -1,3 +1,6 @@
+create database db_loja;
+use db_loja;
+
 INSERT INTO `grupo` (`CODGRU`, `NOMEGRU`, `STATUS`, `CODDEP`) VALUES (51, 'ADAPTADORES', 'A', 0);
 INSERT INTO `grupo` (`CODGRU`, `NOMEGRU`, `STATUS`, `CODDEP`) VALUES (52, 'LAMPADAS', 'A', 0);
 INSERT INTO `grupo` (`CODGRU`, `NOMEGRU`, `STATUS`, `CODDEP`) VALUES (53, 'UTILITARIOS', 'A', 0);

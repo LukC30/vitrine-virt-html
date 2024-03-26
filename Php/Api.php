@@ -6,6 +6,7 @@ header("Access-Control-Allow-Headers: *");
 
 
 include 'dbaccess.php';
+
 $db = new DbConnect;
 $conn = $db->connect();
 
