@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/card.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .navbar-brand img {
@@ -109,7 +109,6 @@
         $url = HostBackEnd;
         echo "<script defer>";
         echo "let urlProduto = '$url';";
-        echo "console.log(urlProduto);";
         echo "</script>";
     ?>
     <script defer>
@@ -118,8 +117,6 @@
             .then(response => response.json())
             .then(data => {
                 produtos = data;
-                console.log(produtos);
-                console.log(data);
                 const cardContainer = document.getElementById('cardContainer');
                 let cardHtml = "";
                 produtos.forEach(produto => {

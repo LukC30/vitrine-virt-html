@@ -5,9 +5,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 header('Content-Type: application/json');
 
-include 'dbaccess.php'; // Inclua o arquivo que contém sua função de conexão com o banco de dados
-
-// Função para validar o ID
+include 'dbaccess.php'; 
 function validateID($id) {
     return is_numeric($id) && intval($id) > 0;
 }

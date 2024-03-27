@@ -20,7 +20,13 @@
     </style>
 
 </head>
-
+<?php
+include './Php/env.php';
+$numMensagem = numTel;
+echo '<script>';
+echo "let numMensagem ='$numMensagem'";
+echo '</script>';
+?>
 
 <body>
     <!--começo da navbar-->
@@ -149,8 +155,8 @@
             itemList += `\n\nPreço Total: R$: ${(precoCarrinho).toFixed(2)}`
             let mensagem = encodeURIComponent(itemList)
             localStorage.clear();
-            window.location.href = `https://wa.me/5521981981510?text=${mensagem}`
-    
+            window.location.href = `https://wa.me/${numMensagem}?text=${mensagem}`
+
         }
     </script>
 </body>
