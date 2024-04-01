@@ -102,7 +102,10 @@
             .then(response => response.json())
             .then(data => {
                 produtos = data;
-                console.log(produtos);
+                if(produtos.error){
+                    alert("Não encontramos pelo item buscado, volte a pagina inicial")
+                    window.location.href = 'index.php'
+                }
                 console.log(data);
                 const cardContainer = document.getElementById('cardContainer');
                 let cardHtml = "";
