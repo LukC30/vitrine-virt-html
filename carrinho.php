@@ -28,6 +28,8 @@ echo "let numMensagem ='$numMensagem'";
 echo '</script>';
 ?>
 
+
+
 <body>
     <!--começo da navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,24 +44,21 @@ echo '</script>';
                     <li class="nav-item active">
                         <a class="nav-link" href="./Produtos.php">Produto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Item 1</a>
-                            <a class="dropdown-item" href="#">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Item 3</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=utilitarios">Utilitarios</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=adaptadores">Adaptadores</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=lampadas">Lampadas</a>
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" onsubmit="return buscaItens()">
+                    <input id="pesquisa" class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
                     <a href="carrinho.php"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>
                 </form>
@@ -67,6 +66,13 @@ echo '</script>';
 
         </div>
     </nav>
+    <script defer>
+        function buscaItens(){
+            var busca = document.getElementById('pesquisa').value;
+            window.location.href = `./Produtos.php?nome=${busca}`
+            return false;
+        }
+    </script>
     <br>
     <br>
     <div class="divTabelinha">

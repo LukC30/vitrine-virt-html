@@ -13,22 +13,24 @@
     <style>
         .navbar-brand img {
             max-width: 100px;
-            
+
             height: auto;
         }
+
         .carousel-item img {
             width: 50%;
             height: auto;
             margin: 0 auto;
             display: block;
         }
+
         @media (max-width: 768px) {
             .carousel {
                 width: 100%;
             }
         }
     </style>
-    
+
 </head>
 
 <body>
@@ -36,8 +38,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="./index.php"><img src="./images/MT.dd489150c93fe88a14be.png" alt="Logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,30 +46,32 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="./Produtos.php">Produto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Item 1</a>
-                            <a class="dropdown-item" href="#">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Item 3</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=utilitarios">Utilitarios</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=adaptadores">Adaptadores</a>
+                            <a class="dropdown-item" href="produtos.php?categoria=lampadas">Lampadas</a>
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" onsubmit="return buscaItens()">
+                    <input id="pesquisa" class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Buscar</button>
-                   <a href="carrinho.php"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>         
+                    <a href="carrinho.php"> <i style="font-size: 24px; margin-left: 80%;" class="fa">&#xf290;</i></a>
                 </form>
             </div>
 
         </div>
+        <script defer>
+            function buscaItens() {
+                var busca = document.getElementById('pesquisa').value;
+                window.location.href = `./Produtos.php?nome=${busca}`
+                return false;
+            }
+        </script>
     </nav>
     <!--final da navbar-->
     <br>
@@ -105,11 +108,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <?php
-        include './Php/env.php';
-        $url = HostBackEnd;
-        echo "<script defer>";
-        echo "let urlProduto = '$url';";
-        echo "</script>";
+    include './Php/env.php';
+    $url = HostBackEnd;
+    echo "<script defer>";
+    echo "let urlProduto = '$url';";
+    echo "</script>";
     ?>
     <script defer>
         let produtos = [];
@@ -133,7 +136,7 @@
                                 <div class="product-bottom-details">
                                     <div class="product-price"><small></small>R$ ${(produto.preco).toFixed(2)}</div>
                                     <div class="product-links">
-                                        <a href="/produto.php?id=${produto.id}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a href="produto.php?id=${produto.id}"><i class="fa fa-shopping-cart"></i></a>
                                     </div>
                                 </div>
                             </div>
